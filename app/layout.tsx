@@ -1,7 +1,8 @@
+import MainNav from '@/components/main-nav';
 import '../styles/globals.css';
 
 export const metadata = {
-  title: 'Shopping Cart',
+  title: 'Fake Store',
   description: '',
 };
 
@@ -12,7 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <MainNav />
+        {children}
+      </body>
     </html>
   );
 }
