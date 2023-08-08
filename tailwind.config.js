@@ -19,9 +19,6 @@ module.exports = {
       colors: {
         text: '#04070c',
         background: '#fbfcfe',
-        primary: '#2f5e93',
-        secondary: '#b1c5ec',
-        accent: '#31629b',
       },
       keyframes: {
         'accordion-down': {
