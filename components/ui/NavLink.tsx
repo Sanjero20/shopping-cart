@@ -9,7 +9,7 @@ interface LinkProps {
 
 function NavLink({ children, href }: LinkProps) {
   const pathname = usePathname();
-  const styles = pathname === href ? 'border-b-2' : '';
+  const styles = pathname === href ? 'border-b-2 border-black' : '';
 
   return (
     <Link href={href} className={styles}>
