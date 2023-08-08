@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Card, CardContent, CardFooter } from './ui/card';
 import { Product } from '@/lib/types';
+import Rating from './rating';
 
 type Props = {
   product: Product;
@@ -24,8 +25,9 @@ function ProductCard({ product }: Props) {
         </p>
       </CardContent>
 
-      <CardFooter className="py-0">
+      <CardFooter className="flex justify-between py-0">
         <p className="font-bold">${product.price}</p>
+        <Rating />
       </CardFooter>
     </Card>
   );
