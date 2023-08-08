@@ -1,17 +1,35 @@
-'use client';
+import { Fragment } from 'react';
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+const MAX_RATING = 5;
 
-const STARS_COUNT = 5;
-const stars = Array.from({ length: STARS_COUNT });
+type RatingProps = {
+  score: number;
+};
 
-const rating = 5;
+function Rating({ score }: RatingProps) {
+  const roundedScore = Math.round(score * 2) / 2;
+  const filledStars = Math.floor(score);
+  const hasHalfStar = roundedScore - filledStars >= 0.5;
+  const remainingStars = MAX_RATING - filledStars - (hasHalfStar ? 1 : 0);
 
-function Rating() {
   return (
     <div className="flex">
-      {stars.map((star, index) => (
-        <AiOutlineStar key={index} className="" />
+      {/* Filled stars */}
+      {[...Array(filledStars)].map((_, index) => (
+        <FaStar key={index} />
+      ))}
+
+      {/* Half star */}
+      {hasHalfStar && (
+        <Fragment>
+          <FaStarHalfAlt />
+        </Fragment>
+      )}
+
+      {/* Empty stars */}
+      {[...Array(remainingStars)].map((_, index) => (
+        <FaRegStar key={index} />
       ))}
     </div>
   );
