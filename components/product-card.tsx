@@ -26,8 +26,8 @@ function ProductCard({ product }: Props) {
       </CardContent>
 
       <CardFooter className="flex justify-between py-0">
-        <Rating score={product.rating.rate} />
         <p className="font-bold">${product.price}</p>
+        <Rating score={product.rating.rate} />
       </CardFooter>
     </Card>
   );
