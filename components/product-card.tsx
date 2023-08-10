@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import Image from 'next/image';
+import Rating from './rating';
 import { Card, CardContent, CardFooter } from './ui/card';
 import { Product } from '@/lib/types';
-import Rating from './rating';
 
 type Props = {
   product: Product;
@@ -9,27 +10,29 @@ type Props = {
 
 function ProductCard({ product }: Props) {
   return (
-    <Card className="flex h-full flex-col justify-end py-4 hover:cursor-pointer">
-      <CardContent className="flex flex-col justify-end gap-4 py-0 pb-2">
-        <Image
-          src={product.image}
-          width={250}
-          height={250}
-          alt=""
-          className="h-40 w-auto object-contain"
-          draggable={false}
-        />
+    <Link href={`/products/${product.id}`}>
+      <Card className="flex h-full flex-col justify-end py-4 hover:cursor-pointer">
+        <CardContent className="flex flex-col justify-end gap-4 py-0 pb-2">
+          <Image
+            src={product.image}
+            width={250}
+            height={250}
+            alt=""
+            className="h-40 w-auto object-contain"
+            draggable={false}
+          />
 
-        <p className="whitespace-wrap line-clamp-2 overflow-hidden text-ellipsis">
-          {product.title}
-        </p>
-      </CardContent>
+          <p className="whitespace-wrap line-clamp-2 overflow-hidden text-ellipsis">
+            {product.title}
+          </p>
+        </CardContent>
 
-      <CardFooter className="flex justify-between py-0">
-        <p className="font-bold">${product.price}</p>
-        <Rating score={product.rating.rate} />
-      </CardFooter>
-    </Card>
+        <CardFooter className="flex justify-between py-0">
+          <p className="font-bold">${product.price}</p>
+          <Rating score={product.rating.rate} />
+        </CardFooter>
+      </Card>
+    </Link>
   );
 }
 
