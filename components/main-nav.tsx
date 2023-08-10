@@ -10,7 +10,7 @@ function MainNav() {
 
         <nav className="flex gap-10">
           <NavLink href="/">HOME</NavLink>
-          <NavLink href="/shop">SHOP</NavLink>
+          <NavLink href="/products">SHOP</NavLink>
           <NavLink href="/about">ABOUT</NavLink>
         </nav>
 
