@@ -1,4 +1,4 @@
-import ProductCard from '@/components/product-card';
+import ProductList from './components/product-list';
 import { Product } from '@/lib/types';
 
 async function getData(): Promise<Product[]> {
@@ -11,13 +11,7 @@ async function getData(): Promise<Product[]> {
 async function ProductsPage() {
   const products = await getData();
 
-  return (
-    <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
-  );
+  return <ProductList products={products} />;
 }
 
 export default ProductsPage;

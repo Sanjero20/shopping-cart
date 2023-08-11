@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Rating from './rating';
-import { Card, CardContent, CardFooter } from './ui/card';
+import Rating from '../../../components/rating';
+import { Card, CardContent, CardFooter } from '../../../components/ui/card';
 import { Product } from '@/lib/types';
 
 type Props = {
@@ -15,10 +15,10 @@ function ProductCard({ product }: Props) {
         <CardContent className="flex flex-col justify-end gap-4 py-0 pb-2">
           <Image
             src={product.image}
-            width={250}
-            height={250}
+            width={125}
+            height={150}
             alt=""
-            className="h-40 w-auto object-contain"
+            className="mx-auto h-40 w-auto"
             draggable={false}
           />
 
