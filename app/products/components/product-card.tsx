@@ -15,8 +15,8 @@ function ProductCard({ product }: Props) {
         <CardContent className="flex flex-col justify-end gap-4 py-0 pb-2">
           <Image
             src={product.image}
-            width={125}
-            height={150}
+            width={225}
+            height={250}
             alt=""
             className="mx-auto h-40 w-auto"
             draggable={false}
