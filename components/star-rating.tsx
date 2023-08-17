@@ -7,7 +7,7 @@ type RatingProps = {
   score: number;
 };
 
-function Rating({ score }: RatingProps) {
+function StarRating({ score }: RatingProps) {
   const roundedScore = Math.round(score * 2) / 2;
   const filledStars = Math.floor(score);
   const hasHalfStar = roundedScore - filledStars >= 0.5;
@@ -35,4 +35,4 @@ function Rating({ score }: RatingProps) {
   );
 }
 
-export default Rating;
+export default StarRating;

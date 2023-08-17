@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Rating from '../../../components/rating';
+import StarRating from '../../../components/star-rating';
 import { Card, CardContent, CardFooter } from '../../../components/ui/card';
 import { Product } from '@/lib/types';
 
@@ -29,7 +29,7 @@ function ProductCard({ product }: Props) {
 
         <CardFooter className="flex justify-between py-0">
           <p className="font-bold">${product.price}</p>
-          <Rating score={product.rating.rate} />
+          <StarRating score={product.rating.rate} />
         </CardFooter>
       </Card>
     </Link>
