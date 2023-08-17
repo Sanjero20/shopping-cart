@@ -4,8 +4,8 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 function MainNav() {
   return (
-    <header className="h-16 w-full">
-      <div className="container flex h-full items-center justify-between">
+    <header className="h-fit w-full">
+      <div className="container flex h-16 items-center justify-between">
         <h1 className="text-2xl font-bold">Fake Store</h1>
 
         <nav className="flex gap-10">
