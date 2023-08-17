@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import Rating from '@/components/rating';
+import ProductRating from './components/product-rating';
+import ButtonAddToCart from './components/btn-add-to-cart';
+
 import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/lib/types';
-import { Button } from '@/components/ui/button';
 
 async function getProductDetails(id: number): Promise<Product | undefined> {
   try {
@@ -28,33 +29,35 @@ async function ProductDetails({ params }: Props) {
     throw new Error(`Failed to fetch product details for item #${params.id}`);
 
   return (
-    <div className="mt-8 flex flex-col gap-8 md:flex-row">
-      <section className=" w-full md:w-1/3">
-        <Card className="flex w-full items-center justify-center pt-8">
-          <CardContent>
+    <div className="flex flex-col gap-8 md:flex-row">
+      <section className="w-full md:w-1/3">
+        <Card className="relative h-full p-6">
+          <CardContent className="relative h-[30vh]">
             <Image
               src={product.image}
               alt=""
-              width={100}
-              height={100}
-              className="h-auto w-auto"
+              quality={80}
+              fill
               priority
+              style={{ objectFit: 'contain' }}
+              className=""
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </CardContent>
         </Card>
       </section>
 
-      <section className="flex flex-col gap-2 md:w-2/3">
-        <h1 className="text-2xl font-bold">{product.title}</h1>
+      <section className="flex flex-col justify-between gap-2 md:w-2/3">
+        <div className="flex flex-col">
+          <h1 className="text-2xl font-bold">{product.title}</h1>
 
-        {/* Product Rating */}
-        <div className="flex items-center gap-1">
-          <Rating score={product.rating.rate} />
-          <p>{product.rating.count}</p>
+          <ProductRating rating={product.rating} />
+          <br />
+          <p className="font-bold">Description</p>
+          <p>{product.description}</p>
         </div>
 
-        <p>{product.description}</p>
-        <Button className="w-fit"> Add to Cart</Button>
+        <ButtonAddToCart product={product} quantity={1} />
       </section>
     </div>
   );
