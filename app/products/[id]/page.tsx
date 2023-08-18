@@ -4,6 +4,7 @@ import ButtonAddToCart from './components/btn-add-to-cart';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/lib/types';
+import ProductImage from './components/product-image';
 
 async function getProductDetails(id: number): Promise<Product | undefined> {
   try {
@@ -31,20 +32,7 @@ async function ProductDetails({ params }: Props) {
   return (
     <div className="flex flex-col gap-8 md:flex-row">
       <section className="w-full md:w-1/3">
-        <Card className="relative h-full p-6">
-          <CardContent className="relative h-[30vh]">
-            <Image
-              src={product.image}
-              alt=""
-              quality={80}
-              fill
-              priority
-              style={{ objectFit: 'contain' }}
-              className=""
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </CardContent>
-        </Card>
+        <ProductImage image={product.image} />
       </section>
 
       <section className="flex flex-col justify-between gap-2 md:w-2/3">
