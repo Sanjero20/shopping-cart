@@ -10,12 +10,10 @@ type ButtonProps = {
 };
 
 function ButtonAddToCart({ product, quantity }: ButtonProps) {
-  const { cart, addToCart } = useCartStore();
-
-  console.log(cart);
+  const { addToCart } = useCartStore();
 
   return (
-    <Button onClick={() => addToCart(product, quantity)} className="w-fit">
+    <Button onClick={() => addToCart(product.id, quantity)} className="w-fit">
       Add to Cart
     </Button>
   );
