@@ -5,15 +5,15 @@ import { Product } from '@/lib/types';
 import useCartStore from '@/store/cartStore';
 
 type ButtonProps = {
-  product: Product;
+  productId: number;
   quantity: number;
 };
 
-function ButtonAddToCart({ product, quantity }: ButtonProps) {
+function ButtonAddToCart({ productId, quantity }: ButtonProps) {
   const { addToCart } = useCartStore();
 
   return (
-    <Button onClick={() => addToCart(product.id, quantity)} className="w-fit">
+    <Button onClick={() => addToCart(productId, quantity)} className="w-fit">
       Add to Cart
     </Button>
   );

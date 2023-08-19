@@ -5,6 +5,9 @@ import ButtonAddToCart from './components/btn-add-to-cart';
 import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/lib/types';
 import ProductImage from './components/product-image';
+import ProductDetails from './components/product-details';
+import InputQuantity from '@/components/input-quantity';
+import AddToCartSection from './components/add-to-cart-section';
 
 async function getProductDetails(id: number): Promise<Product | undefined> {
   try {
@@ -23,7 +26,7 @@ type Props = {
   params: { id: number };
 };
 
-async function ProductDetails({ params }: Props) {
+async function ProductPage({ params }: Props) {
   const product = await getProductDetails(params.id);
 
   if (!product)
@@ -31,24 +34,14 @@ async function ProductDetails({ params }: Props) {
 
   return (
     <div className="flex flex-col gap-8 md:flex-row">
-      <section className="w-full md:w-1/3">
-        <ProductImage image={product.image} />
-      </section>
+      <ProductImage image={product.image} />
 
       <section className="flex flex-col justify-between gap-2 md:w-2/3">
-        <div className="flex flex-col">
-          <h1 className="text-2xl font-bold">{product.title}</h1>
-
-          <ProductRating rating={product.rating} />
-          <br />
-          <p className="font-bold">Description</p>
-          <p>{product.description}</p>
-        </div>
-
-        <ButtonAddToCart product={product} quantity={1} />
+        <ProductDetails product={product} />
+        <AddToCartSection product={product} />
       </section>
     </div>
   );
 }
 
-export default ProductDetails;
+export default ProductPage;
