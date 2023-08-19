@@ -7,17 +7,17 @@ type ProductImageProps = {
 
 function ProductImage({ image }: ProductImageProps) {
   return (
-    <Card className="relative h-full p-6">
+    <Card className="relative h-full w-full p-6 md:w-1/3">
       <CardContent className="relative h-[30vh]">
         <Image
           src={image}
-          alt=""
+          alt="product"
           quality={80}
-          fill
-          priority
-          style={{ objectFit: 'contain' }}
-          className=""
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{ objectFit: 'contain' }}
+          draggable={false}
+          priority
+          fill
         />
       </CardContent>
     </Card>
