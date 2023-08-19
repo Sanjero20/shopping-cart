@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 type ProductCart = {
-  productId: number;
+  id: number;
   quantity: number;
 };
 
@@ -21,15 +21,30 @@ const useCartStore = create<CartState & CartAction>((set, get) => ({
   cart: [],
 
   addToCart: (productId, quantity) =>
-    // check if product already exist
-    //    add quantity
-    // else
-    //    add new item
-
     set((state) => {
-      return {
-        cart: [...state.cart, { productId, quantity }],
-      };
+      let cart = get().cart;
+      let productIndex = cart.findIndex((product) => product.id === productId);
+
+      // Add to product cart list when it does not exist
+      if (productIndex < 0) {
+        return {
+          cart: [...cart, { id: productId, quantity }],
+        };
+      }
+
+      // update product quantity
+      const updatedCart = cart.map((product) => {
+        if (product.id === productId) {
+          return {
+            ...product,
+            quantity: product.quantity + quantity,
+          };
+        }
+        // Default return
+        return product;
+      });
+
+      return { cart: updatedCart };
     }),
 }));
 

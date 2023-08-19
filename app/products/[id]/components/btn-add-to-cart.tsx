@@ -1,7 +1,6 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Product } from '@/lib/types';
 import useCartStore from '@/store/cartStore';
 
 type ButtonProps = {
