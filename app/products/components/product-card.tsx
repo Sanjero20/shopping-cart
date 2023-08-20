@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import StarRating from '../../../components/star-rating';
-import { Card, CardContent, CardFooter } from '../../../components/ui/card';
+import StarRating from '@/components/star-rating';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Product } from '@/lib/types';
 
 type Props = {

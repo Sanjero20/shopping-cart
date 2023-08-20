@@ -1,12 +1,6 @@
-import Image from 'next/image';
-import ProductRating from './components/product-rating';
-import ButtonAddToCart from './components/btn-add-to-cart';
-
-import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/lib/types';
 import ProductImage from './components/product-image';
 import ProductDetails from './components/product-details';
-import InputQuantity from '@/components/input-quantity';
 import AddToCartSection from './components/add-to-cart-section';
 
 async function getProductDetails(id: number): Promise<Product | undefined> {
