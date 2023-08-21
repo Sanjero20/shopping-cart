@@ -22,7 +22,7 @@ function ProductCard({ product }: Props) {
             draggable={false}
           />
 
-          <p className="whitespace-wrap line-clamp-2 overflow-hidden text-ellipsis">
+          <p className="whitespace-wrap line-clamp-1 overflow-hidden text-ellipsis">
             {product.title}
           </p>
         </CardContent>

@@ -21,26 +21,24 @@ function InputQuantity({ quantity, setQuantity }: InputQuantityProps) {
 
   const editQuantity = (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
+    if (!value || value < 1) return;
     setQuantity(value);
   };
 
   return (
     <div className="flex gap-1">
-      {/* decrement */}
       <Button variant="outline" onClick={decrementQuantity}>
         -
       </Button>
 
-      {/* Actual Input */}
       <Input
         type="number"
-        className="w-12"
+        className="w-12 text-center"
         value={quantity}
         onChange={(e) => editQuantity(e)}
         min={1}
       />
 
-      {/* increment */}
       <Button variant="outline" onClick={incrementQuantity}>
         +
       </Button>
