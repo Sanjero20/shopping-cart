@@ -15,7 +15,7 @@ function AddToCartSection({ product }: Props) {
   return (
     <div className="flex gap-4">
       <InputQuantity setQuantity={setQuantity} quantity={quantity} />
-      <ButtonAddToCart productId={product.id} quantity={quantity} />
+      <ButtonAddToCart product={product} quantity={quantity} />
     </div>
   );
 }

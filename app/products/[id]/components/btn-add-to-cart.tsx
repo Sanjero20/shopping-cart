@@ -1,18 +1,19 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { Product } from '@/lib/types';
 import useCartStore from '@/store/cartStore';
 
 type ButtonProps = {
-  productId: number;
+  product: Product;
   quantity: number;
 };
 
-function ButtonAddToCart({ productId, quantity }: ButtonProps) {
+function ButtonAddToCart({ product, quantity }: ButtonProps) {
   const { addToCart } = useCartStore();
 
   return (
-    <Button onClick={() => addToCart(productId, quantity)} className="w-fit">
+    <Button onClick={() => addToCart(product, quantity)} className="w-fit">
       Add to Cart
     </Button>
   );

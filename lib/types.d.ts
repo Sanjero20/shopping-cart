@@ -17,3 +17,8 @@ export type AddedProducts = {
   product: Product;
   quantity: number;
 };
+
+export type CartItem = {
+  product: Product;
+  quantity: number;
+};

@@ -1,17 +1,14 @@
 import { create } from 'zustand';
-
-type ProductCart = {
-  id: number;
-  quantity: number;
-};
+import { CartItem, Product } from '@/lib/types';
+import updateQuantity from '@/lib/updateQuantity';
 
 type CartState = {
   totalPrice: number;
-  cart: ProductCart[];
+  cart: CartItem[];
 };
 
 type CartAction = {
-  addToCart: (productId: number, quantity: number) => void;
+  addToCart: (product: Product, quantity: number) => void;
   // adjustQuantity: (productId: number, quantity: number) => void;
   // removeItem: (productId: number) => void;
 };
@@ -20,29 +17,25 @@ const useCartStore = create<CartState & CartAction>((set, get) => ({
   totalPrice: 0,
   cart: [],
 
-  addToCart: (productId, quantity) =>
+  addToCart: (product, quantity) =>
     set((state) => {
       let cart = get().cart;
-      let productIndex = cart.findIndex((product) => product.id === productId);
+      let productIndex = cart.findIndex((item) => item.product === product);
 
       // Add to product cart list when it does not exist
       if (productIndex < 0) {
         return {
-          cart: [...cart, { id: productId, quantity }],
+          cart: [...cart, { product, quantity }],
         };
       }
 
+      const cartItem: CartItem = {
+        product: product,
+        quantity: quantity,
+      };
+
       // update product quantity
-      const updatedCart = cart.map((product) => {
-        if (product.id === productId) {
-          return {
-            ...product,
-            quantity: product.quantity + quantity,
-          };
-        }
-        // Default return
-        return product;
-      });
+      const updatedCart = updateQuantity(cart, cartItem, quantity);
 
       return { cart: updatedCart };
     }),
