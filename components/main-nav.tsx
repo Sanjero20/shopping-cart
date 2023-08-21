@@ -8,15 +8,13 @@ function MainNav() {
       <div className="container flex h-16 items-center justify-between">
         <h1 className="text-2xl font-bold">Fake Store</h1>
 
-        <nav className="flex gap-10">
+        <nav className="flex gap-6">
           <NavLink href="/">HOME</NavLink>
           <NavLink href="/products">SHOP</NavLink>
-          <NavLink href="/about">ABOUT</NavLink>
+          <Link href="/cart">
+            <AiOutlineShoppingCart size={24} />
+          </Link>
         </nav>
-
-        <Link href="/cart">
-          <AiOutlineShoppingCart size={24} />
-        </Link>
       </div>
     </header>
   );
