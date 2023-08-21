@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import ButtonShop from '@/components/btn-shop';
 
 function HomePage() {
   return (
@@ -15,9 +14,7 @@ function HomePage() {
           revolutionize your retail experience with us.
         </p>
 
-        <Link href={'products'}>
-          <Button className="text-lg">Shop now</Button>
-        </Link>
+        <ButtonShop />
       </section>
     </div>
   );
