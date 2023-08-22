@@ -7,7 +7,7 @@ type ButtonShopProps = {
 
 function ButtonShop({ text = 'Shop Now' }: ButtonShopProps) {
   return (
-    <Link href={'products'}>
+    <Link href={'products'} className="mx-auto">
       <Button>{text}</Button>
     </Link>
   );
