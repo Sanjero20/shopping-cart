@@ -18,9 +18,13 @@ const useCartStore = create<CartState & CartAction>((set, get) => ({
   cart: [],
 
   addToCart: (product, quantity) =>
-    set((state) => {
+    set(() => {
       let cart = get().cart;
-      let productIndex = cart.findIndex((item) => item.product === product);
+
+      // Check if product exist in cart items
+      let productIndex = cart.findIndex(
+        (item) => item.product.id === product.id,
+      );
 
       // Add to product cart list when it does not exist
       if (productIndex < 0) {
@@ -29,14 +33,7 @@ const useCartStore = create<CartState & CartAction>((set, get) => ({
         };
       }
 
-      const cartItem: CartItem = {
-        product: product,
-        quantity: quantity,
-      };
-
-      // update product quantity
-      const updatedCart = updateQuantity(cart, cartItem, quantity);
-
+      const updatedCart = updateQuantity(cart, product, quantity);
       return { cart: updatedCart };
     }),
 }));

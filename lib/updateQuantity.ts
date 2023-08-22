@@ -1,12 +1,12 @@
-import { CartItem } from './types';
+import { CartItem, Product } from './types';
 
-function updateQuantity(cart: CartItem[], item: CartItem, quantity: number) {
+function updateQuantity(cart: CartItem[], product: Product, quantity: number) {
   const updatedCart = cart.map((object) => {
     // Edit quantity if it matches
-    if (object.product.id === item.product.id) {
+    if (object.product.id === product.id) {
       return {
-        ...item,
-        quantity: item.quantity + quantity,
+        product,
+        quantity: object.quantity + quantity,
       };
     }
 
