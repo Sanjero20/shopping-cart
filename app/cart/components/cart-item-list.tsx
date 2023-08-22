@@ -7,7 +7,7 @@ type CartListProps = {
 
 function CartList({ cart }: CartListProps) {
   return (
-    <section className="flex w-full flex-col items-center gap-2">
+    <section className="flex h-full w-full flex-col items-center gap-2">
       {cart.map((item) => (
         <CartItemCard
           key={item.product.id}

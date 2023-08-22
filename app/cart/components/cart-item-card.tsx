@@ -17,7 +17,7 @@ function CartItemCard({ product, quantity }: CartItemCartProps) {
   // Update quantity logic here...
 
   return (
-    <Card className="flex w-full md:w-4/5">
+    <Card className="flex w-full">
       <CardContent className="relative flex w-2/5 items-center justify-center border-r pt-6 md:w-1/5">
         <Image
           src={product.image}
