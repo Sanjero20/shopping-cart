@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/lib/types';
 import InputQuantity from '@/components/input-quantity';
 import Image from 'next/image';
+import useCartStore from '@/store/cartStore';
 
 type CartItemCartProps = {
   product: Product;
@@ -13,8 +14,12 @@ type CartItemCartProps = {
 
 function CartItemCard({ product, quantity }: CartItemCartProps) {
   const [value, setValue] = useState(quantity);
+  const { adjustQuantity } = useCartStore();
 
   // Update quantity logic here...
+  useEffect(() => {
+    adjustQuantity(product, value);
+  }, [product, value, adjustQuantity]);
 
   return (
     <Card className="flex w-full">

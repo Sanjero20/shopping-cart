@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { CartItem, Product } from '@/lib/types';
-import updateQuantity from '@/lib/updateQuantity';
+import { editQuantity, addProductQuantity } from '@/lib/updateQuantity';
 import computeTotalPrice from '@/lib/computeTotalPrice';
 
 type CartState = {
@@ -10,7 +10,7 @@ type CartState = {
 
 type CartAction = {
   addToCart: (product: Product, quantity: number) => void;
-  // adjustQuantity: (productId: number, quantity: number) => void;
+  adjustQuantity: (product: Product, quantity: number) => void;
   // removeItem: (productId: number) => void;
 };
 
@@ -37,10 +37,23 @@ const useCartStore = create<CartState & CartAction>((set, get) => ({
         };
       }
 
-      const updatedCart = updateQuantity(cart, product, quantity);
+      const updatedCart = addProductQuantity(cart, product, quantity);
       const totalPrice = computeTotalPrice(updatedCart);
 
       return { cart: updatedCart, totalPrice };
+    }),
+
+  adjustQuantity: (product, quantity) =>
+    set(() => {
+      let cart = get().cart;
+
+      const updatedCart = editQuantity(cart, product, quantity);
+      const totalPrice = computeTotalPrice(updatedCart);
+
+      return {
+        cart: updatedCart,
+        totalPrice,
+      };
     }),
 }));
 

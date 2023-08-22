@@ -1,8 +1,12 @@
 import { CartItem, Product } from './types';
 
-function updateQuantity(cart: CartItem[], product: Product, quantity: number) {
+export function addProductQuantity(
+  cart: CartItem[],
+  product: Product,
+  quantity: number,
+) {
   const updatedCart = cart.map((object) => {
-    // Edit quantity if it matches
+    // Add quantity if it matches
     if (object.product.id === product.id) {
       return {
         product,
@@ -17,4 +21,24 @@ function updateQuantity(cart: CartItem[], product: Product, quantity: number) {
   return updatedCart;
 }
 
-export default updateQuantity;
+// Change existing value (used in cart page)
+export function editQuantity(
+  cart: CartItem[],
+  product: Product,
+  quantity: number,
+) {
+  const updatedCart = cart.map((object) => {
+    // Change quantity if it matches
+    if (object.product.id === product.id) {
+      return {
+        product,
+        quantity,
+      };
+    }
+
+    // Default return
+    return object;
+  });
+
+  return updatedCart;
+}
