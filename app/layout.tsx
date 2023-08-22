@@ -1,6 +1,6 @@
-import MainNav from '@/components/main-nav';
-import Footer from '@/components/footer';
 import '../styles/globals.css';
+
+import MainNav from '@/components/main-nav';
 
 export const metadata = {
   title: 'Fake Store',
@@ -14,10 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex h-screen flex-col bg-background text-text">
+      <body className="flex h-screen min-h-screen flex-col bg-background text-text">
         <MainNav />
-        <main className="container flex-1">{children}</main>
-        <Footer />
+        <main className="container flex-1 pb-4">{children}</main>
       </body>
     </html>
   );
