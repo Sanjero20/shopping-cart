@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { CartItem, Product } from '@/lib/types';
 import updateQuantity from '@/lib/updateQuantity';
+import computeTotalPrice from '@/lib/computeTotalPrice';
 
 type CartState = {
   totalPrice: number;
@@ -28,13 +29,18 @@ const useCartStore = create<CartState & CartAction>((set, get) => ({
 
       // Add to product cart list when it does not exist
       if (productIndex < 0) {
+        const newCart = [...cart, { product, quantity }];
+        const totalPrice = computeTotalPrice(newCart);
         return {
-          cart: [...cart, { product, quantity }],
+          cart: newCart,
+          totalPrice,
         };
       }
 
       const updatedCart = updateQuantity(cart, product, quantity);
-      return { cart: updatedCart };
+      const totalPrice = computeTotalPrice(updatedCart);
+
+      return { cart: updatedCart, totalPrice };
     }),
 }));
 
