@@ -1,44 +1,25 @@
 import { CartItem, Product } from './types';
 
-export function addProductQuantity(
+function updateQuantity(
   cart: CartItem[],
   product: Product,
   quantity: number,
+  overwrite = true,
 ) {
   const updatedCart = cart.map((object) => {
-    // Add quantity if it matches
     if (object.product.id === product.id) {
+      // Add or overwrite current quantity value if it matches the id
+      const newQty = overwrite ? quantity : object.quantity + quantity;
       return {
         product,
-        quantity: object.quantity + quantity,
+        quantity: newQty,
       };
     }
 
-    // Default return
     return object;
   });
 
   return updatedCart;
 }
 
-// Change existing value (used in cart page)
-export function editQuantity(
-  cart: CartItem[],
-  product: Product,
-  quantity: number,
-) {
-  const updatedCart = cart.map((object) => {
-    // Change quantity if it matches
-    if (object.product.id === product.id) {
-      return {
-        product,
-        quantity,
-      };
-    }
-
-    // Default return
-    return object;
-  });
-
-  return updatedCart;
-}
+export default updateQuantity;
