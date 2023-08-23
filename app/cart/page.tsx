@@ -17,7 +17,7 @@ function CartPage() {
 
   return (
     <div className="flex h-full flex-1 flex-col items-center justify-center gap-2">
-      <section className="flex h-full md:w-4/5">
+      <section className="flex h-full w-full md:w-4/5">
         <CartList cart={cart} />
       </section>
 
