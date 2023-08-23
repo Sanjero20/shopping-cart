@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/lib/types';
+import { BsTrash } from 'react-icons/bs';
 import InputQuantity from '@/components/input-quantity';
 import Image from 'next/image';
 import useCartStore from '@/store/cartStore';
@@ -14,7 +15,7 @@ type CartItemCartProps = {
 
 function CartItemCard({ product, quantity }: CartItemCartProps) {
   const [value, setValue] = useState(quantity);
-  const { adjustQuantity } = useCartStore();
+  const { adjustQuantity, removeItem } = useCartStore();
 
   // Update quantity logic here...
   useEffect(() => {
@@ -22,7 +23,7 @@ function CartItemCard({ product, quantity }: CartItemCartProps) {
   }, [product, value, adjustQuantity]);
 
   return (
-    <Card className="flex w-full">
+    <Card className="group flex w-full">
       <CardContent className="relative flex w-2/5 items-center justify-center border-r pt-6 md:w-1/5">
         <Image
           src={product.image}
@@ -38,6 +39,14 @@ function CartItemCard({ product, quantity }: CartItemCartProps) {
         <p className="line-clamp-1 text-ellipsis font-bold">{product.title}</p>
         <p>${product.price}</p>
         <InputQuantity quantity={value} setQuantity={setValue} />
+      </CardContent>
+
+      <CardContent className="hidden h-full items-center group-hover:flex">
+        <BsTrash
+          size={20}
+          className="cursor-pointer"
+          onClick={() => removeItem(product.id)}
+        />
       </CardContent>
     </Card>
   );

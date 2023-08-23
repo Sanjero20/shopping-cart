@@ -11,7 +11,7 @@ type CartState = {
 type CartAction = {
   addToCart: (product: Product, quantity: number) => void;
   adjustQuantity: (product: Product, quantity: number) => void;
-  // removeItem: (productId: number) => void;
+  removeItem: (productId: number) => void;
 };
 
 const useCartStore = create<CartState & CartAction>((set, get) => ({
@@ -46,7 +46,6 @@ const useCartStore = create<CartState & CartAction>((set, get) => ({
   adjustQuantity: (product, quantity) =>
     set(() => {
       let cart = get().cart;
-
       const updatedCart = updateQuantity(cart, product, quantity);
       const totalPrice = computeTotalPrice(updatedCart);
 
@@ -54,6 +53,15 @@ const useCartStore = create<CartState & CartAction>((set, get) => ({
         cart: updatedCart,
         totalPrice,
       };
+    }),
+
+  removeItem: (productId: number) =>
+    set(() => {
+      let cart = get().cart;
+      const updatedCart = cart.filter((item) => item.product.id !== productId);
+      const totalPrice = computeTotalPrice(updatedCart);
+
+      return { cart: updatedCart, totalPrice };
     }),
 }));
 
