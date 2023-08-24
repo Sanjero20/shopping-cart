@@ -1,7 +1,8 @@
-import { Product } from '@/lib/types';
 import ProductImage from './components/product-image';
 import ProductDetails from './components/product-details';
 import AddToCartSection from './components/add-to-cart-section';
+import { Separator } from '@/components/ui/separator';
+import { Product } from '@/lib/types';
 
 async function getProductDetails(id: number): Promise<Product | undefined> {
   try {
@@ -32,7 +33,11 @@ async function ProductPage({ params }: Props) {
 
       <section className="flex flex-col justify-between gap-2 md:w-2/3">
         <ProductDetails product={product} />
-        <AddToCartSection product={product} />
+
+        <div>
+          <Separator className="mb-2" />
+          <AddToCartSection product={product} />
+        </div>
       </section>
     </div>
   );

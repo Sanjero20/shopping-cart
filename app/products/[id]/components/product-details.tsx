@@ -7,12 +7,18 @@ type ProductDetailsProps = {
 
 function ProductDetails({ product }: ProductDetailsProps) {
   return (
-    <div className="flex flex-col">
-      <h1 className="text-2xl font-bold">{product.title}</h1>
-      <ProductRating rating={product.rating} />
+    <div className="flex flex-col gap-1">
+      <section>
+        <h1 className="text-2xl font-bold">{product.title}</h1>
+        <ProductRating rating={product.rating} />
+      </section>
 
-      <p className="mt-1 font-bold">Description</p>
-      <p>{product.description}</p>
+      <p className="text-xl font-bold">${product.price}</p>
+
+      <section>
+        <p className="font-bold">Description</p>
+        <p>{product.description}</p>
+      </section>
     </div>
   );
 }
