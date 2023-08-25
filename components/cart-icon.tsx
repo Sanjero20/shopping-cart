@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import { usePathname } from 'next/navigation';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import countItems from '@/lib/countItems';
 import useCartStore from '@/store/cartStore';
@@ -8,8 +9,11 @@ import Link from 'next/link';
 
 function CartIcon() {
   const { cart } = useCartStore();
+  const path = usePathname();
 
   const cartQuantity = useMemo(() => countItems(cart), [cart]);
+
+  if (path === '/cart') return;
 
   return (
     <Link href="/cart" className="relative">
