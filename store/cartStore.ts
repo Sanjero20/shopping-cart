@@ -4,7 +4,6 @@ import updateQuantity from '@/lib/updateQuantity';
 import computeTotalPrice from '@/lib/computeTotalPrice';
 
 type CartState = {
-  totalPrice: number;
   cart: CartItem[];
 };
 
@@ -30,38 +29,25 @@ const useCartStore = create<CartState & CartAction>((set, get) => ({
       // Add to product cart list when it does not exist
       if (productIndex < 0) {
         const newCart = [...cart, { product, quantity }];
-        const totalPrice = computeTotalPrice(newCart);
-        return {
-          cart: newCart,
-          totalPrice,
-        };
+        return { cart: newCart };
       }
 
       const updatedCart = updateQuantity(cart, product, quantity, false);
-      const totalPrice = computeTotalPrice(updatedCart);
-
-      return { cart: updatedCart, totalPrice };
+      return { cart: updatedCart };
     }),
 
   adjustQuantity: (product, quantity) =>
     set(() => {
       let cart = get().cart;
       const updatedCart = updateQuantity(cart, product, quantity);
-      const totalPrice = computeTotalPrice(updatedCart);
-
-      return {
-        cart: updatedCart,
-        totalPrice,
-      };
+      return { cart: updatedCart };
     }),
 
   removeItem: (productId: number) =>
     set(() => {
       let cart = get().cart;
       const updatedCart = cart.filter((item) => item.product.id !== productId);
-      const totalPrice = computeTotalPrice(updatedCart);
-
-      return { cart: updatedCart, totalPrice };
+      return { cart: updatedCart };
     }),
 }));
 

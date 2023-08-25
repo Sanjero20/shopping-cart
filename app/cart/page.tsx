@@ -4,9 +4,17 @@ import useCartStore from '@/store/cartStore';
 import CartList from './components/cart-item-list';
 import ButtonShop from '@/components/btn-shop';
 import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react';
+import computeTotalPrice from '@/lib/computeTotalPrice';
 
 function CartPage() {
-  const { cart, totalPrice } = useCartStore();
+  const [totalPrice, setTotalPrice] = useState(0);
+  const { cart } = useCartStore();
+
+  useEffect(() => {
+    const price = computeTotalPrice(cart);
+    setTotalPrice(price);
+  }, [cart]);
 
   if (cart.length === 0)
     return (
