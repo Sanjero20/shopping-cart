@@ -41,7 +41,7 @@ function CartItemCard({ product, quantity }: CartItemCartProps) {
         <InputQuantity quantity={value} setQuantity={setValue} />
       </CardContent>
 
-      <CardContent className="hidden h-full items-center group-hover:flex">
+      <CardContent className="flex h-full items-center p-0 pr-4 sm:hidden sm:p-6 sm:group-hover:flex">
         <BsTrash
           size={20}
           className="cursor-pointer"
